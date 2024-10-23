@@ -37,6 +37,14 @@ pipeline {
     }
 
     post {
+        success {
+            emailext(
+                subject: "Build #${env.BUILD_NUMBER} Succeeded",
+                body: "Le build ${env.BUILD_NUMBER} a été réalisé avec succès.",
+                to: 'badre.bousalem@enpc.fr',
+                recipientProviders: [requestor()]
+            )
+        }
         failure {
             emailext(
                 subject: "Build #${env.BUILD_NUMBER} Failed",
