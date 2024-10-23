@@ -41,7 +41,7 @@ pipeline {
             emailext(
                 subject: "Build #${env.BUILD_NUMBER} Succeeded",
                 body: "Le build ${env.BUILD_NUMBER} a été réalisé avec succès.",
-                to: 'badre.bousalem@enpc.fr',
+                to: 'dialsyphax@gmail.com',
                 recipientProviders: [requestor()]
             )
         }
@@ -49,7 +49,7 @@ pipeline {
             emailext(
                 subject: "Build #${env.BUILD_NUMBER} Failed",
                 body: "Le build ${env.BUILD_NUMBER} a échoué. Vérifiez les logs pour plus de détails.",
-                to: 'badre.bousalem@enpc.fr',
+                to: 'dialsyphax@gmail.com',
                 recipientProviders: [requestor()]
             )
         }
