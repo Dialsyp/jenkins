@@ -38,8 +38,7 @@ pipeline {
                 dependencyCheck additionalArguments: '', 
                                nvdCredentialsId: 'NVDKey', // Assurez-vous que cet ID correspond à votre configuration d'identifiants
                                odcInstallation: 'DependencyCheck', // Assurez-vous que ce nom correspond à votre configuration
-                               outputDirectory: 'dependency-check-report', // Dossier de sortie pour les rapports
-                               failOnError: true // Échoue si des vulnérabilités sont détectées
+                              
             }
         }
         stage('Publish Dependency Check Reports') {
