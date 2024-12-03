@@ -4,15 +4,14 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout([
-                    $class: 'GitSCM', 
+                checkout scmGit(
                     branches: [[name: '*/master']], 
                     extensions: [], 
                     userRemoteConfigs: [[
-                        credentialsId: 'JenkinsCesi', 
-                        url: 'https://github.com/Dialsyp/Test'
+                        credentialsId: 'd6a9f5ac-5869-47bf-803b-e4708486690c', 
+                        url: 'https://github.com/Dialsyp/iptv'
                     ]]
-                ])
+                )
             }
         }
         stage('Run Tests') {
