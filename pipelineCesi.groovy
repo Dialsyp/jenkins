@@ -32,6 +32,7 @@ pipeline {
             steps {
                 // Vérifier si le dossier existe, sinon le créer
                 sh 'rm -rf /var/lib/jenkins/workspace/Analyse\\ Code\\ Cesi/*'
+                sh '''
                 if [ ! -d "dependencycheckreport/html" ]; then
                     mkdir -p dependencycheckreport/html
                 fi
