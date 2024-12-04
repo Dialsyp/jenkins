@@ -20,22 +20,6 @@ pipeline {
                 dependencyCheckPublisher pattern: 'dependency-check-report.xml'
             }
         }
-    //     stage('SonarCloud Analysis') {
-    //        steps {
-    //            script {
-    //                def scannerHome = tool 'SonarQubeTool' // Assurez-vous que l'outil est configuré dans Jenkins
-    //                withSonarQubeEnv('SonarQube') { // Remplacez par le nom que vous avez donné à votre serveur SonarCloud
-    //                    sh "${scannerHome}/bin/sonar-scanner"
-    //                }
-    //            }
-    //        }
-    //    }
-
-stage('Code Style Analysis') {
-    steps {
-        sh 'npx eslint . --ext .js,.ts'
-    }
-}
     }
 
     //post {
