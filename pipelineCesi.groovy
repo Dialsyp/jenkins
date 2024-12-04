@@ -32,8 +32,8 @@ pipeline {
             steps {
                 // Vérifier si le dossier existe, sinon le créer
                 sh '''
-                if [ ! -d "dependency-check-report/html" ]; then
-                    mkdir -p dependency-check-report/html
+                if [ ! -d "dependencycheckreport/html" ]; then
+                    mkdir -p dependencycheckreport/html
                 fi
                 '''
             }
@@ -42,7 +42,7 @@ pipeline {
         stage('Nettoyer les anciens rapports') {
             steps {
                 // Supprimer les anciens fichiers dans le répertoire de rapports
-                sh 'rm -rf dependency-check-report/html/*'
+                sh 'rm -rf dependencycheckreport/html/*'
             }
         }
 
@@ -58,8 +58,8 @@ pipeline {
             steps {
                 // Publier les rapports HTML et JSON
                 publishHTML(target: [
-    reportName: 'Dependency Check Report',
-    reportDir: 'dependency-check-report/html', // Chemin vers le rapport HTML
+    reportName: 'DependencyCheckReport',
+    reportDir: 'dependencycheckreport/html', // Chemin vers le rapport HTML
     reportFiles: 'index.html', // Fichier du rapport HTML à publier
     alwaysLinkToLastBuild: true,
     keepAll: true,
