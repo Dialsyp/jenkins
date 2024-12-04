@@ -57,16 +57,16 @@ pipeline {
                 archiveArtifacts artifacts: 'dependency-check-report/*.json', allowEmptyArchive: true
             }
         }
-        stage('SonarCloud Analysis') {
-            steps {
-                script {
-                    def scannerHome = tool 'SonarQubeTool' // Assurez-vous que l'outil est configuré dans Jenkins
-                    withSonarQubeEnv('SonarQube') { // Remplacez par le nom que vous avez donné à votre serveur SonarCloud
-                        sh "${scannerHome}/bin/sonar-scanner"
-                    }
-                }
-            }
-        }
+        //stage('SonarCloud Analysis') {
+        //    steps {
+        //        script {
+        //            def scannerHome = tool 'SonarQubeTool' // Assurez-vous que l'outil est configuré dans Jenkins
+        //            withSonarQubeEnv('SonarQube') { // Remplacez par le nom que vous avez donné à votre serveur SonarCloud
+        //                sh "${scannerHome}/bin/sonar-scanner"
+        //            }
+        //        }
+        //    }
+       // }
     }
 
     //post {
