@@ -58,13 +58,13 @@ pipeline {
             steps {
                 // Publier les rapports HTML et JSON
                 publishHTML(target: [
-                    reportName: 'Dependency Check Report',
-                    reportDir: 'dependency-check-report/html', // Chemin vers le rapport HTML
-                    reportFiles: 'index.html', // Fichier du rapport HTML à publier
-                    alwaysLinkToLastBuild: true,
-                    keepAll: true,
-                    allowMissing: false
-                ])
+    reportName: 'Dependency Check Report',
+    reportDir: 'dependency-check-report/html', // Chemin vers le rapport HTML
+    reportFiles: 'index.html', // Fichier du rapport HTML à publier
+    alwaysLinkToLastBuild: true,
+    keepAll: true,
+    allowMissing: false
+])
                 
                 // Archive les fichiers JSON pour référence future
                 archiveArtifacts artifacts: 'dependency-check-report/*.json', allowEmptyArchive: true
