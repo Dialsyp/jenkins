@@ -19,21 +19,10 @@ pipeline {
 
         stage('OWASP Dependency Check') {
             steps {
-                dependencyCheck additionalArguments: '--out ./reports/dependency-check', nvdCredentialsId: 'NVDKey', odcInstallation: 'DependencyCheck'
+                dependencyCheck additionalArguments: '--format HTML', nvdCredentialsId: 'NVDKey', odcInstallation: 'DependencyCheck'
             }
         }
-        stage('Publish OWASP Dependency Check Report') {
-            steps {
-                publishHTML(target: [
-                    allowMissing: false,
-                    alwaysLinkToLastBuild: true,
-                    keepAll: true,
-                    reportDir: 'reports/dependency-check',
-                    reportFiles: 'dependency-check-report.html',
-                    reportName: 'OWASP Dependency Check Report'
-                ])
-            }
-        }
+        
 
         
         //stage('SonarCloud Analysis') {
