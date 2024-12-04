@@ -39,6 +39,13 @@ pipeline {
             }
         }
 
+        stage('Nettoyer les anciens rapports') {
+            steps {
+                // Supprimer les anciens fichiers dans le répertoire de rapports
+                sh 'rm -rf dependency-check-report/html/*'
+            }
+        }
+
         stage('OWASP Dependency-Check') {
             steps {
                 dependencyCheck additionalArguments: '', 
