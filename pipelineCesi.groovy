@@ -14,20 +14,6 @@ pipeline {
                 )
             }
         }
-        stage('Run Tests') {
-            steps {
-                script {
-                    // Exécution de tests unitaires fictifs
-                    echo 'Running unit tests...'
-                    def testSuccess = true // Modifie à false pour simuler un échec
-                    if (!testSuccess) {
-                        error "Unit tests failed!"
-                    } else {
-                        echo 'Unit tests passed!'
-                    }
-                }
-            }
-        }
          stage('Préparer le dossier') {
             steps {
                 // Vérifier si le dossier existe, sinon le créer
@@ -49,7 +35,7 @@ pipeline {
 
         stage('OWASP Dependency Check') {
             steps {
-                dependencyCheck additionalArguments: '', nvdCredentialsId: 'NVDKey', odcInstallation: 'DependencyCheck'
+                dependencyCheck additionalArguments: '--out ./reports/dependency-check', nvdCredentialsId: 'NVDKey', odcInstallation: 'DependencyCheck'
             }
         }
         stage('Publish OWASP Dependency Check Report') {
