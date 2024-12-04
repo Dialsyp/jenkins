@@ -48,6 +48,7 @@ pipeline {
 
         stage('OWASP Dependency-Check') {
             steps {
+                sh 'rm -rf /var/lib/jenkins/workspace/Analyse\\ Code\\ Cesi/*'
                 dependencyCheck additionalArguments: '', 
                                nvdCredentialsId: 'NVDKey', // Assurez-vous que cet ID correspond à votre configuration d'identifiants
                                odcInstallation: 'DependencyCheck' // Assurez-vous que ce nom correspond à votre configuration
