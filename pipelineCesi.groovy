@@ -14,28 +14,24 @@ pipeline {
                 )
             }
         }
-
-       
-
         stage('OWASP Dependency Check') {
             steps {
                 dependencyCheck additionalArguments: '--format XML', nvdCredentialsId: 'NVDKey', odcInstallation: 'DependencyCheck'
                 dependencyCheckPublisher pattern: 'dependency-check-report.xml'
             }
         }
-        
+        stage('SonarCloud Analysis') {
+           steps {
+               script {
+                   def scannerHome = tool 'SonarQubeTool' // Assurez-vous que l'outil est configuré dans Jenkins
+                   withSonarQubeEnv('SonarQube') { // Remplacez par le nom que vous avez donné à votre serveur SonarCloud
+                       sh "${scannerHome}/bin/sonar-scanner"
+                   }
+               }
+           }
+       }
 
-        
-        //stage('SonarCloud Analysis') {
-        //    steps {
-        //        script {
-        //            def scannerHome = tool 'SonarQubeTool' // Assurez-vous que l'outil est configuré dans Jenkins
-        //            withSonarQubeEnv('SonarQube') { // Remplacez par le nom que vous avez donné à votre serveur SonarCloud
-        //                sh "${scannerHome}/bin/sonar-scanner"
-        //            }
-        //        }
-        //    }
-       // }
+       
     }
 
     //post {
@@ -51,7 +47,7 @@ pipeline {
      //       emailext(
      //           subject: "Build #${env.BUILD_NUMBER} Failed",
      //           body: "Le build ${env.BUILD_NUMBER} a échoué. Vérifiez les logs pour plus de détails.",
-     //           to: 'dialsyphax@gmail.com',
+     //           to: 'dialsyphax@gmail.com'
      //           recipientProviders: [requestor()]
       //      )
       //  }
