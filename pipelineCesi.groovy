@@ -28,19 +28,25 @@ pipeline {
                 }
             }
         }
-        stage('Hello') {
+         stage('Préparer le dossier') {
             steps {
-                echo 'Hello World'
+                // Vérifier si le dossier existe, sinon le créer
+                sh '''
+                if [ ! -d "dependency-check-report/html" ]; then
+                    mkdir -p dependency-check-report/html
+                fi
+                '''
             }
         }
+
         stage('OWASP Dependency-Check') {
             steps {
                 dependencyCheck additionalArguments: '', 
                                nvdCredentialsId: 'NVDKey', // Assurez-vous que cet ID correspond à votre configuration d'identifiants
                                odcInstallation: 'DependencyCheck' // Assurez-vous que ce nom correspond à votre configuration
-                              
             }
         }
+
         stage('Publish Dependency Check Reports') {
             steps {
                 // Publier les rapports HTML et JSON
