@@ -47,12 +47,21 @@ pipeline {
             }
         }
 
-        stage('OWASP Dependency-Check') {
+        stage('OWASP Dependency Check') {
             steps {
-                
-                dependencyCheck additionalArguments: '', 
-                               nvdCredentialsId: 'NVDKey', // Assurez-vous que cet ID correspond à votre configuration d'identifiants
-                               odcInstallation: 'DependencyCheck' // Assurez-vous que ce nom correspond à votre configuration
+                dependencyCheck additionalArguments: '--scan target/', odcInstallation: 'owasp'
+            }
+        }
+        stage('Publish OWASP Dependency Check Report') {
+            steps {
+                publishHTML(target: [
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true,
+                    reportDir: 'target',
+                    reportFiles: 'dependency-check-report.html',
+                    reportName: 'OWASP Dependency Check Report'
+                ])
             }
         }
 
