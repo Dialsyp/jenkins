@@ -69,22 +69,22 @@ pipeline {
         }
     }
 
-    post {
-        success {
-            emailext(
-                subject: "Build #${env.BUILD_NUMBER} Succeeded",
-                body: "Le build ${env.BUILD_NUMBER} a été réalisé avec succès.",
-                to: 'dialsyphax@gmail.com',
-                recipientProviders: [requestor()]
-            )
-        }
-        failure {
-            emailext(
-                subject: "Build #${env.BUILD_NUMBER} Failed",
-                body: "Le build ${env.BUILD_NUMBER} a échoué. Vérifiez les logs pour plus de détails.",
-                to: 'dialsyphax@gmail.com',
-                recipientProviders: [requestor()]
-            )
-        }
-    }
+    //post {
+    //    success {
+     //       emailext(
+     //           subject: "Build #${env.BUILD_NUMBER} Succeeded",
+     //           body: "Le build ${env.BUILD_NUMBER} a été réalisé avec succès.",
+     //           to: 'dialsyphax@gmail.com',
+     //           recipientProviders: [requestor()]
+     //       )
+     //   }
+     //   failure {
+     //       emailext(
+     //           subject: "Build #${env.BUILD_NUMBER} Failed",
+     //           body: "Le build ${env.BUILD_NUMBER} a échoué. Vérifiez les logs pour plus de détails.",
+     //           to: 'dialsyphax@gmail.com',
+     //           recipientProviders: [requestor()]
+      //      )
+      //  }
+   // }
 }
