@@ -15,12 +15,7 @@ pipeline {
             }
         }
 
-        stage('Nettoyer les anciens rapports') {
-            steps {
-                // Supprimer les anciens fichiers dans le répertoire de rapports
-                sh 'rm -rf dependencycheckreport/html/*'
-            }
-        }
+       
 
         stage('OWASP Dependency Check') {
             steps {
@@ -33,7 +28,7 @@ pipeline {
                     allowMissing: false,
                     alwaysLinkToLastBuild: true,
                     keepAll: true,
-                    reportDir: './dependencycheckreport/html',
+                    reportDir: './reports/dependency-check',
                     reportFiles: 'dependency-check-report.html',
                     reportName: 'OWASP Dependency Check Report'
                 ])
