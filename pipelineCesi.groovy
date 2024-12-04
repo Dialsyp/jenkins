@@ -9,7 +9,7 @@ pipeline {
                     extensions: [], 
                     userRemoteConfigs: [[
                         credentialsId: 'd6a9f5ac-5869-47bf-803b-e4708486690c', 
-                        url: 'https://github.com/Amora-Corporation/monolithApplication'
+                        url: 'https://github.com/Dialsyp/iptv'
                     ]]
                 )
             }
