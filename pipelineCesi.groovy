@@ -49,7 +49,7 @@ pipeline {
 
         stage('OWASP Dependency Check') {
             steps {
-                dependencyCheck additionalArguments: '--scan target/', nvdCredentialsId: 'NVDKey', odcInstallation: 'DependencyCheck'
+                dependencyCheck additionalArguments: '', nvdCredentialsId: 'NVDKey', odcInstallation: 'DependencyCheck'
             }
         }
         stage('Publish OWASP Dependency Check Report') {
