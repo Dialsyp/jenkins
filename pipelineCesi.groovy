@@ -67,7 +67,7 @@ pipeline {
 ])
                 
                 // Archive les fichiers JSON pour référence future
-                archiveArtifacts artifacts: 'dependency-check-report/*.json', allowEmptyArchive: true
+                //archiveArtifacts artifacts: 'dependency-check-report/*.json', allowEmptyArchive: true
             }
         }
         //stage('SonarCloud Analysis') {
